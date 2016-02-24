@@ -22,7 +22,7 @@ Environment Set-up:
 
  - If required, add the corresponding website security certificates to the ESB for aforementioned connectors. 
 
- - Add the sequences and templates in the "common" directory (<PRINTAVO_CONNECTOR_HOME>/printavo-integrated-scenarios/src/common), to the ESB that are listed as below.
+ - Add the sequences and templates in the "common" directory (<PRINTAVO_CONNECTOR_HOME>/printavo-integrated-scenarios/src/common), to the    ESB that are listed as below.
          - sequences -  faultHandlerSeq.xml
                         removeResponseHeaders.xml
   
@@ -57,8 +57,8 @@ Environment Set-up:
    [i] Case - 001
       - Purpose : (a)   (i)  Create products in Printavo by retrieving items in the category 'Screen Printing' from SalesBinder.
                         (ii) Create campaigns for the retrieved items if it is requried.
-      - Files:    (a)   Proxy - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Product Initiation\Case-001\proxy\p                                 rintavo_createProductsAndMarket.xml
-               (b)   Sequences - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Product Initiation\Case-001\sequen                                  ces\sendloop-createAndSendCampaignSeq.xml
+      - Files:    (a)   Proxy     - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Product Initiation\Case                                            -001\proxy\printavo_createProductsAndMarket.xml
+                  (b)   Sequences - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Product Initiation\Case                                            -001\sequences\sendloop-createAndSendCampaignSeq.xml
       
       - Request Parameters:   (a) sendloop.fromEmail     -  The email address of the sender of the campaign.
                               (b) sendloop.fromName      -  The name of the sender of the campaign.
@@ -71,7 +71,7 @@ Environment Set-up:
       - Purpose : (a)   (i)   Retrieve clickers of the campaign in SendLoop and add them to a new list. A new list is created for each                                 campaign if it is not already created.
                         (ii)  Create those clickers as Leads in BaseCRM.
 
-      - Files :   (a)   Proxy - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case-001\proxy\p                                 rintavo_retrieveClickersAndCreateContacts.xml
+      - Files :   (a)   Proxy    - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case-001\prox                                    y\printavo_retrieveClickersAndCreateContacts.xml
                         Sequence - <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case-001\sequ                                    ences\basecrm-createLeadsSeq.xml
 
       - Request Parameters:   (a) sendloop.campaignId - ID of the campaign in Sendloop to which the clickers will be retrieved.
@@ -79,7 +79,7 @@ Environment Set-up:
    [iii] Case - 002
       - Purpose : (a)   (i)   Retrieve won deals in BaseCRM and create draft quotes for them in Printavo. A new customer will be created                               if the customer related to the deal is not already existing in Printavo.
 
-      - Files :   (a)   Proxy -  <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case-002\proxy\                                  printavo_retrieveWonDealsAndCreateQuotes.xml
+      - Files :   (a)   Proxy   -   <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case                                            -002\proxy\printavo_retrieveWonDealsAndCreateQuotes.xml
                         Sequence -  <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case                                            -001\sequences\basecrm-getUserIdSeq.xml
                                     <PRINTAVO_CONNECTOR_HOME>\printavo-integrated-scenarios\src\scenarios\Contact Management\Case                                            -001\sequences\basecrm-getOrderIdSeq.xml
 
