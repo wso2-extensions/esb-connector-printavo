@@ -2,7 +2,7 @@ Product: Printavo Integrated Scenarios
 
 Environment Set-up:
 
- - Download and initialize ESB 4.9.0-BETA-SNAPSHOT with patches.
+ - Download and initialize ESB 4.9.0.
  
  - Upload the following connectors to the ESB.
  
