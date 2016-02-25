@@ -1,4 +1,4 @@
-# esb-connector-printavo
+### Printavo ESB Connector
 The Printavo connector allows you to access the Printavo REST API through WSO2 ESB. Printavo is a web-based tool used to centralize job scheduling, payment collection, invoicing, analytics, customer information and more.
 
 ###Build
