@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!--Create and send campaigns in sendloop for the items in salesbinder-->
 <sequence xmlns="http://ws.apache.org/ns/synapse" name="sendloop-createAndSendCampaignsSeq">
     <!-- START: Proceed only if a product has been created for the item -->
@@ -27,42 +27,42 @@
                     <!--Script to get campaign related information from the custom fields of the item-->
                     <script language="js">
                     <![CDATA[
-					 var itemDetails = eval("(" + mc.getProperty('salesbinder.itemDetails') + ")");
-					 var campaignName='';
-					 var campaignSubject='';
-					 var campaignLink='';
-					 var campaignListId='';
-					 var campaignContent='';
-					 var campaignHeading='';
-					 var productId='';
-					 for(var i=0 ; i<itemDetails.length ;i++) {
-					   var id = itemDetails[i].id;
-					   var name = itemDetails[i].CustomField.name;
-					   if(name== 'campaign_name') {
-							campaignName = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignName",campaignName);
-					   }
-					   if(name== 'campaign_subject') {
-							campaignSubject = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignSubject",campaignSubject);
-					   }
-					   if(name== 'campaign_link') {
-							campaignLink = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignHtmlContent",campaignLink);
-					   }
-					   if(name== 'campaign_listId') {
-							campaignListId = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignListId",campaignListId);
-					   }
-					   if(name== 'campaign_content') {
-							campaignContent = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignContent",campaignContent);
-					   }
-					   if(name== 'campaign_contentHeading') {
-							campaignHeading = itemDetails[i].value;
-							mc.setProperty("sendloop.campaignHeading",campaignHeading);
-					   }
-					 }
+                     var itemDetails = eval("(" + mc.getProperty('salesbinder.itemDetails') + ")");
+                     var campaignName='';
+                     var campaignSubject='';
+                     var campaignLink='';
+                     var campaignListId='';
+                     var campaignContent='';
+                     var campaignHeading='';
+                     var productId='';
+                     for(var i=0 ; i<itemDetails.length ;i++) {
+                       var id = itemDetails[i].id;
+                       var name = itemDetails[i].CustomField.name;
+                       if(name== 'campaign_name') {
+                            campaignName = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignName",campaignName);
+                       }
+                       if(name== 'campaign_subject') {
+                            campaignSubject = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignSubject",campaignSubject);
+                       }
+                       if(name== 'campaign_link') {
+                            campaignLink = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignHtmlContent",campaignLink);
+                       }
+                       if(name== 'campaign_listId') {
+                            campaignListId = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignListId",campaignListId);
+                       }
+                       if(name== 'campaign_content') {
+                            campaignContent = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignContent",campaignContent);
+                       }
+                       if(name== 'campaign_contentHeading') {
+                            campaignHeading = itemDetails[i].value;
+                            mc.setProperty("sendloop.campaignHeading",campaignHeading);
+                       }
+                     }
                     ]]>
                     </script>
                     <property name="sendloop.campaignListId"

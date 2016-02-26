@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!--Retrieve clickers for a given campaign and add them to a new list and create them as leads in basecrm-->
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="printavo_retrieveClickersAndCreateLeads" transports="https"
        startOnLoad="true" trace="disable">
@@ -106,18 +106,18 @@
                                     <!--To check whether there is a list already for the given campaign-->
                                     <script language="js">
                                         <![CDATA[
-								            var listArray = eval("(" + mc.getProperty('sendloop.subscriberLists') + ")");
-								            var campaignName = ''+mc.getProperty('sendloop.campaignName');
-								            var listId;
-								                for(var i=0 ; i<listArray.length ;i++) {
-								                    var listName = listArray[i].Name;
-								                    if(listName== campaignName) {
-										                listId = listArray[i].ListID;
-										                mc.setProperty("sendloop.newListId",listId);
+                                            var listArray = eval("(" + mc.getProperty('sendloop.subscriberLists') + ")");
+                                            var campaignName = ''+mc.getProperty('sendloop.campaignName');
+                                            var listId;
+                                                for(var i=0 ; i<listArray.length ;i++) {
+                                                    var listName = listArray[i].Name;
+                                                    if(listName== campaignName) {
+                                                        listId = listArray[i].ListID;
+                                                        mc.setProperty("sendloop.newListId",listId);
                                                         break;
-								                    }
-								                }
-							            ]]>
+                                                    }
+                                                }
+                                        ]]>
                                     </script>
                                     <!-- START: Proceed only if there is no list existing for the campaign. -->
                                     <filter source="boolean(get-property('sendloop.newListId'))" regex="false">
@@ -188,28 +188,28 @@
                                                 <!--Retrieve all the information related to the clicker(Subscriber)-->
                                                 <script language="js">
                                                     <![CDATA[
-											             var subscriberArray = eval("(" + mc.getProperty('sendloop.subscribers') + ")");
-											             var subscirberId = ''+mc.getProperty('sendloop.subscriberId');
-											             var subscriberEmail;
-											                 for(var i=0 ; i<subscriberArray.length ;i++) {
-											                     var id = subscriberArray[i].SubscriberID;
-											                         if(id== subscirberId) {
-													                     var subscriberObj = subscriberArray[i];
-													                     subscriberEmail = subscriberArray[i].EmailAddress;
-													                         for (var key in subscriberObj) {
-														                         if(new java.lang.String(key).startsWith('CustomField')) {
+                                                         var subscriberArray = eval("(" + mc.getProperty('sendloop.subscribers') + ")");
+                                                         var subscirberId = ''+mc.getProperty('sendloop.subscriberId');
+                                                         var subscriberEmail;
+                                                             for(var i=0 ; i<subscriberArray.length ;i++) {
+                                                                 var id = subscriberArray[i].SubscriberID;
+                                                                     if(id== subscirberId) {
+                                                                         var subscriberObj = subscriberArray[i];
+                                                                         subscriberEmail = subscriberArray[i].EmailAddress;
+                                                                             for (var key in subscriberObj) {
+                                                                                 if(new java.lang.String(key).startsWith('CustomField')) {
                                                                                      var name = subscriberObj[key];
                                                                                      var firstName = name.split(' ')[0];
                                                                                      var lastName = name.split(' ')[1];
                                                                                      mc.setProperty("sendloop.subscriberFirstName",firstName);
-															                         mc.setProperty("sendloop.subscriberLastName",lastName);
-															                         break;
+                                                                                     mc.setProperty("sendloop.subscriberLastName",lastName);
+                                                                                     break;
                                                                                  }
-													                         }
+                                                                             }
                                                                          mc.setProperty("sendloop.subscriberEmail",subscriberEmail);
-											                         }
+                                                                     }
                                                              }
-									                ]]>
+                                                    ]]>
                                                 </script>
                                                 <!-- Calling basecrm-createLeadsSeq sequence to create leads in basecrm for the clickers-->
                                                 <sequence key="basecrm-createLeadsSeq"/>

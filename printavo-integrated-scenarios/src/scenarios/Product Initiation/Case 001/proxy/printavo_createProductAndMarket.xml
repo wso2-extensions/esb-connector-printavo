@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- ~  Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
- ~
- ~  WSO2 Inc. licenses this file to you under the Apache License,
- ~  Version 2.0 (the "License"); you may not use this file except
- ~  in compliance with the License.
- ~  You may obtain a copy of the License at
- ~
- ~    http://www.apache.org/licenses/LICENSE-2.0
- ~
- ~  Unless required by applicable law or agreed to in writing,
- ~  software distributed under the License is distributed on an
- ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- ~  KIND, either express or implied.  See the License for the
- ~  specific language governing permissions and limitations
- ~  under the License.
--->
+  ~ Copyright (c) 2016, WSO2 Inc. (http://www.wso2.org) All Rights Reserved.
+  ~
+  ~   WSO2 Inc. licenses this file to you under the Apache License,
+  ~   Version 2.0 (the "License"); you may not use this file except
+  ~   in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~  Unless required by applicable law or agreed to in writing,
+  ~  software distributed under the License is distributed on an
+  ~  "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+  ~  KIND, either express or implied.  See the License for the
+  ~  specific language governing permissions and limitations
+  ~  under the License.
+  -->
 <!--Create product in Printavo for the items in Salesbinder and send campaigns for those products if required via Sendloop-->
 <proxy xmlns="http://ws.apache.org/ns/synapse" name="printavo_createProductsAndMarket" transports="https http"
        startOnLoad="true" trace="disable">
@@ -53,15 +53,15 @@
             <script language="js">
                 <![CDATA[
                     var categoryDetails = eval("(" + mc.getProperty('salesbinder.categories') + ")");
-				    var categoryId='';
-				        for(var i=0 ; i<categoryDetails.length ;i++) {
-				            var name = categoryDetails[i].name;
-				               if(name== 'Screen Printing') {
-						           categoryId = categoryDetails[i].id;
-						           mc.setProperty("salesbinder.categoryId",categoryId);
-						           break;
-					           }
-				        }
+                    var categoryId='';
+                        for(var i=0 ; i<categoryDetails.length ;i++) {
+                            var name = categoryDetails[i].name;
+                               if(name== 'Screen Printing') {
+                                   categoryId = categoryDetails[i].id;
+                                   mc.setProperty("salesbinder.categoryId",categoryId);
+                                   break;
+                               }
+                        }
                 ]]>
             </script>
             <!--Call SalesBinder connector listInventoryItems method to retrieve all the items for the given category -->
@@ -117,34 +117,34 @@
                                         <script language="js">
                                             <![CDATA[
                                                 var itemDetails = eval("(" + mc.getProperty('salesbinder.itemDetails') + ")");
-									            var printavoCreated;
-									            var campaignCreated;
-									            var printavoCF;
-									            var campaignCF;
-									            var detailLength = itemDetails.length;
-									                for(var i=0 ; i<itemDetails.length ;i++) {
-									                    var id = itemDetails[i].id;
-									                    mc.setProperty("salesbinder.CFid",id);
-									                    var name = itemDetails[i].CustomField.name;
-									                       if(name== 'printavo_product') {
-											                   printavoCreated = itemDetails[i].value;
-											                      if(printavoCreated !="" || printavoCreated !=null) {
-												                      mc.setProperty("salesbinder.printavoCreation",printavoCreated);
-											                      }
+                                                var printavoCreated;
+                                                var campaignCreated;
+                                                var printavoCF;
+                                                var campaignCF;
+                                                var detailLength = itemDetails.length;
+                                                    for(var i=0 ; i<itemDetails.length ;i++) {
+                                                        var id = itemDetails[i].id;
+                                                        mc.setProperty("salesbinder.CFid",id);
+                                                        var name = itemDetails[i].CustomField.name;
+                                                           if(name== 'printavo_product') {
+                                                               printavoCreated = itemDetails[i].value;
+                                                                  if(printavoCreated !="" || printavoCreated !=null) {
+                                                                      mc.setProperty("salesbinder.printavoCreation",printavoCreated);
+                                                                  }
                                                                printavoCF = itemDetails[i].custom_field_id;
-									                       }
-									                       if(name== 'campaign_creation (true or false)') {
-											                   campaignCreated = ''+itemDetails[i].value;
-											                   campaignCreated = campaignCreated.toLowerCase();
-											                       if(campaignCreated != "true") {
-												                       mc.setProperty("salesbinder.campaignCreation",campaignCreated);
-											                       }
-											                   campaignCF = itemDetails[i].custom_field_id;
-									                       }
-									                }
-									            mc.setProperty("salesbinder.printavoCF",printavoCF);
-									            mc.setProperty("salesbinder.campaignCF",campaignCF);
-								            ]]>
+                                                           }
+                                                           if(name== 'campaign_creation (true or false)') {
+                                                               campaignCreated = ''+itemDetails[i].value;
+                                                               campaignCreated = campaignCreated.toLowerCase();
+                                                                   if(campaignCreated != "true") {
+                                                                       mc.setProperty("salesbinder.campaignCreation",campaignCreated);
+                                                                   }
+                                                               campaignCF = itemDetails[i].custom_field_id;
+                                                           }
+                                                    }
+                                                mc.setProperty("salesbinder.printavoCF",printavoCF);
+                                                mc.setProperty("salesbinder.campaignCF",campaignCF);
+                                            ]]>
                                         </script>
                                         <!-- START: Proceed only if a product has not been created for the item -->
                                         <filter source="boolean(get-property('salesbinder.printavoCreation'))"
