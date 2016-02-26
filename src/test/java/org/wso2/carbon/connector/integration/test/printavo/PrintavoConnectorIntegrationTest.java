@@ -46,7 +46,7 @@ public class PrintavoConnectorIntegrationTest extends ConnectorIntegrationTestBa
     @BeforeClass(alwaysRun = true)
     public void setEnvironment() throws Exception {
         
-        init("printavo-connector-1.0.0");
+        init("printavo-connector-1.0.1-SNAPSHOT");
         
         esbRequestHeadersMap = new HashMap<String, String>();
         apiRequestHeadersMap = new HashMap<String, String>();
