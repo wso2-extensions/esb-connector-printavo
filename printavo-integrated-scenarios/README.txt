@@ -12,7 +12,7 @@ Environment Set-up:
     -> freshbooks-connector-1.0.0
     -> basecrm-connector-1.0.0
 
- - Follow the instructions given in the developer guide of the above connectors, and enable the ESB axis configurations accordingly. Developer guide locations of the aforementioned connectors are listed below.
+ - Follow the instructions given in the developer guide of the above connectors, and enable the ESB axis configurations accordingly.        Developer guide locations of the aforementioned connectors are listed below.
 
          Freshbooks  - https://docs.wso2.com/display/CONNECTORS/FreshBooks+Connector
          Printavo    - 
