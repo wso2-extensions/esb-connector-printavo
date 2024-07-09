@@ -1,0 +1,20 @@
+{
+    "name": "Printavo",
+    "owner": "WSO2",
+    "category": "Other",
+    "documentationUrl": "https://docs.wso2.com/display/ESBCONNECTORS/Printavo+Connector",
+    "description": "The Printavo connector allows you to access the Printavo REST API through WSO2 ESB. Printavo is a web-based tool used to centralize job scheduling, payment collection, invoicing, analytics, customer information and more.",
+    "status": "Unsupported",
+    "labels": [
+        "connector"
+    ],
+    "releases": [
+        {
+            "tagName": "v1.0.0",
+            "products": [
+                "\"ESB 4.9.0\""
+            ],
+            "isHidden": false
+        }
+    ]
+}
